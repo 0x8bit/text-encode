@@ -2,6 +2,14 @@
 encoding and decoding ascii letter to/from bin, hex or oct
 
 """
+def isbin(num):
+    
+	num = num.split()
+	for i in range(len(num)):
+		if set(num[i]) == set(['0', '1']):
+			return True
+		else:
+			return False
 def to_enc():
 
     text=input("Enter text to convert: ")
@@ -22,8 +30,8 @@ def to_alpha():
     encoding = ['bin', 'hex', 'oct']
 
     if not text.isalpha():
-        convert_to_alpa = [chr(eval(num)) for num in text.split()]
-        for to_alpha in convert_to_alpa:
+        convert_to_alpha = [chr(eval(num[0] + 'b' + num[1:] if isbin(num) else num)) for num in text.split()]
+        for to_alpha in convert_to_alpha:
             print(to_alpha, end=' ')
     else:
         prin('Decoding not supported')
